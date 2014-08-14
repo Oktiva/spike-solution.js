@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/../client/'));
 
 io.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });
