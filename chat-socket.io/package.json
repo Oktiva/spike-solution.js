@@ -1,0 +1,33 @@
+{
+    "name": "chat-socket.io",
+    "version": "0.0.0",
+    "description": "Chat application that's really easy to plug-in any software. No, seriously!",
+    "main": "index.js",
+    "dependencies": {
+        "express": "~4.8.3",
+        "socket.io": "~1.0.6"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "oktiva/spike-solution.js"
+    },
+    "keywords": [
+        "chat",
+        "client",
+        "server",
+        "websockets",
+        "html5",
+        "plugable",
+        "plugin",
+        "easy-to-use"
+    ],
+    "author": "Leonardo Ruoso <leonardo@ruoso.com> (http://leonardo.ruoso.com/)",
+    "contributors": [
+        "Renato M Camilio <renatomcamilio@gmail.com>"
+    ],
+    "license": "MIT"
+}
