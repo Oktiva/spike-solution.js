@@ -28,50 +28,27 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary chat">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-9 message-list">
                                 <div class="well">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="btn btn-info user-msg"><strong>Juca: </strong>Oi Mariazinha</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="btn btn-default pull-right user-msg"><strong>Renatex: </strong>Oi Jukiz, Maria</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="btn btn-info user-msg"><strong>Mariazinha: </strong>Oi Jukiz</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="btn btn-info user-msg"><strong>Juca: </strong>Demorou</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="panel panel-primary">
-                                    <div class="panel-heading">Friends</div>
-                                    <ul class="list-group contact-list">
-                                        <a href="#" class="list-group-item">Juca</a>
-                                        <a href="#" class="list-group-item">Mariazinha</a>
-                                        <a href="#" class="list-group-item">Renatex</a>
+                                    <div class="panel-heading">People</div>
+                                    <ul class="list-group people-list">
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 message-sender">
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="message-text">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">Send</button>
+                                        <button class="btn btn-primary send-message" type="button">Send</button>
                                     </span>
                                 </div>
                             </div>
@@ -84,8 +61,9 @@
     </div>
 
     <!-- libs -->
-    <script src="/libs/jquery/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <script src="/libs/lodash/lodash.min.js"></script>
     <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
     <!-- source -->
     <script src="/scripts/client.js"></script>

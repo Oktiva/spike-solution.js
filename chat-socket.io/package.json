@@ -1,6 +1,6 @@
 {
     "name": "chat-socket.io",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Chat application that's really easy to plug-in any software. No, seriously!",
     "main": "index.js",
     "dependencies": {

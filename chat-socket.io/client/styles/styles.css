@@ -1,1 +1,2 @@
+body .message-list .well { min-height: 100px; }
 body .message-list .user-msg { margin-bottom: 10px; }
