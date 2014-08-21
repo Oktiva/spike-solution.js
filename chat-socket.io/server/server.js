@@ -1,17 +1,19 @@
-var _ = require('lodash');
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+// Dependencies
+var _  = require('lodash');
+var io = require('socket.io');
 
-var chat = io.of('/chat');
 
-app.use(express.static(__dirname + '/../client/'));
+// Chat constructor
+var Chat = function (httpServer, ioNamespace) {
+    if (! this instanceof Chat) return new Chat();
+    if (_.isUndefined(ioNamespace)) ioNamespace = 'chat';
 
-http.listen(8080);
+    this.io = io(httpServer);
+    this.conversation = io.of('/' + ioNamespace);
+    this.bindEvents();
+};
 
-// sockets events
-var getPeopleList = function () {
+Chat.prototype.getPeopleList = function () {
     var peopleList = [];
 
     _.each(chat.sockets, function (socket) {
@@ -21,15 +23,28 @@ var getPeopleList = function () {
     return peopleList;
 };
 
-chat.on('connection', function (socket) {
-    chat.emit('update:people-list', getPeopleList());
+Chat.prototype.bindEvents = function () {
+    var that = this;
 
-    socket.on('disconnect', function () {
-        chat.emit('update:people-list', getPeopleList());
-    });
+    // When someone connects to the chat
+    this.conversation.on('connection', function (socket) {
+        // Then we send an update to the chat namespace
+        that.conversation.emit('update:people-list', that.getPeopleList());
 
-    socket.on('send:message', function (message) {
-        chat.emit('update:message-list', message);
+        // Also, when someone disconnects, we need to update the people list
+        socket.on('disconnect', function () {
+            that.conversation.emit('update:people-list', that.getPeopleList());
+        });
+
+        // when someone send a public message
+        socket.on('send:message', function (message) {
+            // We publish it to the people connected
+            that.conversation.emit('update:message-list', message);
+        });
     });
-});
+};
+
+
+// Exports
+module.exports = Chat;
 
