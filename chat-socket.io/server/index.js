@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var http = http.Server(app);
-var chat = require('./chat');
+var http = require('http').Server(app);
+var chat = require('./chat')(http);
 
 // Routes and assets
 app.use(express.static(__dirname + '/../client/'));

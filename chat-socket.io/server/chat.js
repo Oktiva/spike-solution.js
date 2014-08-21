@@ -3,20 +3,25 @@ var _  = require('lodash');
 var io = require('socket.io');
 
 
+// Exports
+module.exports = Chat;
+
+
 // Chat constructor
-var Chat = function (httpServer, ioNamespace) {
-    if (! this instanceof Chat) return new Chat();
+function Chat(httpServer, ioNamespace) {
     if (_.isUndefined(ioNamespace)) ioNamespace = 'chat';
+    if (! (this instanceof Chat)) return new Chat(httpServer, ioNamespace);
 
     this.io = io(httpServer);
-    this.conversation = io.of('/' + ioNamespace);
+    this.conversation = this.io.of('/' + ioNamespace);
     this.bindEvents();
-};
+}
 
 Chat.prototype.getPeopleList = function () {
+    var that = this;
     var peopleList = [];
 
-    _.each(chat.sockets, function (socket) {
+    _.each(that.conversation.sockets, function (socket) {
         peopleList.push( _.pick(socket, ['id']) );
     });
 
@@ -43,8 +48,4 @@ Chat.prototype.bindEvents = function () {
         });
     });
 };
-
-
-// Exports
-module.exports = Chat;
 
